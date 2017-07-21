@@ -1,4 +1,4 @@
-package sun.aop;
+package sun.aop.advice;
 
 /**
  * Created by zhangshaolin on 2017/7/21.

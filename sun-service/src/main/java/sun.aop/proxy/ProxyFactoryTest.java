@@ -1,14 +1,9 @@
-package sun.aop.proxyFactory;
+package sun.aop.proxy;
 
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 
-import java.lang.reflect.Method;
-
- class ProxyFactoryTest {
+class ProxyFactoryTest {
     public static void main(String[] args) {
 
         /**
@@ -32,43 +27,6 @@ import java.lang.reflect.Method;
 
 }
 
-/**
- * 模拟业务接口
- */
-interface UserService {
-    public void updateUser();
-}
-
-/**
- * 模拟具体业务
- */
-class UserServiceImpl implements UserService {
-
-    @Override
-    public void updateUser() {
-        System.out.println("$$$$$$执行业务逻辑$$$$$");
-    }
-}
-
-/**
- * 模拟切面1
- */
-class SecurityInterceptor implements MethodInterceptor {
-    @Override
-    public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-        System.out.println("==========执行安全校验====================");
-        return methodInvocation.proceed();
-    }
-}
-
-/**
- * 模拟切面2
- */
-class LoggerBeforeAdvice implements MethodBeforeAdvice {
-    @Override
-    public void before(Method method, Object[] args, Object target) throws Throwable {
-        System.out.println("=======保存更新日志=========");
-    }
 
 
-}
+

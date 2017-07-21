@@ -1,4 +1,4 @@
-package sun.aop;
+package sun.aop.advice;
 
 public interface Shopping {
   public String buySomething(String type);

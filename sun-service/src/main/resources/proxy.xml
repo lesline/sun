@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+    <bean class="sun.aop.proxy.UserServiceImpl" id="userService"></bean>
+    <bean class="sun.aop.proxy.LoggerBeforeAdvice" id="loggerBeforeAdvice"></bean>
+    <bean class="sun.aop.proxy.SecurityInterceptor" id="securityInterceptor"></bean>
+
+
+    <!-- 自动代理所有的advisor -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="usePrefix" value="true"></property>
+        <property name="advisorBeanNamePrefix" value="advisor"></property>
+    </bean>
+
+    <bean id="advisor1" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="pattern">
+            <value>.*update.*</value>  <!-- 业务实现方法名匹配 -->
+        </property>
+        <property name="advice">
+            <ref bean="loggerBeforeAdvice"/>
+        </property>
+    </bean>
+
+    <bean id="advisor2" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="pattern">
+            <value>.*update.*</value>  <!-- 业务实现方法名匹配 -->
+        </property>
+        <property name="advice">
+            <ref bean="securityInterceptor"/>
+        </property>
+    </bean>
+</beans>

@@ -1,4 +1,4 @@
-package sun.aop;
+package sun.aop.advice;
 
 public class ShoppingImplA implements Shopping {
     private Customer customer;
