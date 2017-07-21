@@ -22,6 +22,7 @@
             </property>
             <property name="interceptorNames">
                 <list>
+                    <!--我们可以放Advice或者Advisor，但最终都通过warp方法转化为Advisor-->
                     <value>WelcomeAdvice</value>
                 </list>
             </property>
