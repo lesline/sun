@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+    <context:annotation-config/>
+    <context:component-scan base-package="sun"/>
+    <beans>
+        <bean id="WelcomeAdvice" class="sun.aop.WelcomeAdvice">
+        </bean>
+
+        <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+            <property name="beanNames">
+                <list>
+                    <value>buy*</value>
+                </list>
+            </property>
+            <property name="interceptorNames">
+                <list>
+                    <value>WelcomeAdvice</value>
+                </list>
+            </property>
+
+        </bean>
+
+        <bean id="buyBean" class="sun.aop.ShoppingImplA">
+            <property name="customer">
+                <ref bean="customer"/>
+            </property>
+        </bean>
+        <!--<bean id="sellBean" class="sun.aop.ShoppingImplB">-->
+            <!--<property name="customer">-->
+                <!--<ref bean="customer"/>-->
+            <!--</property>-->
+        <!--</bean>-->
+
+
+        <bean id="customer" class="sun.aop.Customer">
+            <constructor-arg index="0">
+                <value>gaoxiang</value>
+            </constructor-arg>
+            <constructor-arg index="1">
+                <value>26</value>
+            </constructor-arg>
+        </bean>
+
+
+    </beans>
+
+
+</beans>
