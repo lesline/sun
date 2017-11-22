@@ -28,6 +28,6 @@
 动太规划
 http://www.cnblogs.com/bourbon/archive/2011/08/23/2151044.html
 
-快排代码编写
+
 
 jmx上报加日志收集分析系统，比如zabbix，falcon
