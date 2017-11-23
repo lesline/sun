@@ -1,0 +1,67 @@
+HashMap 由Entry数组组成，Entry下是链表（jdk1.8变成红黑树）
+
+
+HashMap是基于hashing的原理，当我们给put()方法传递键和值时，我们先对键调用hashCode()方法，返回的hashCode用于找到bucket位置来储存Entry对象
+
+
+如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？
+默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，
+将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。
+
+
+你了解重新调整HashMap大小存在什么问题吗？
+当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。
+在调整大小的过程中，存储在链表中的元素的次序会反过来，因为移动到新的bucket位置的时候，HashMap并不会将元素放在链表的尾部，而是放在头部，这是为了避免尾部遍历(tail traversing)。
+如果条件竞争发生了，那么就死循环了。
+
+
+transient Entry<K,V>[] table = (Entry<K,V>[]) EMPTY_TABLE;
+
+   static class Entry<K,V> implements Map.Entry<K,V> {
+        final K key;
+        V value;
+        Entry<K,V> next;
+        int hash;
+----------------------------------------------------------
+resize过程：
+
+当 ((size >= threshold)  才resize
+其中
+threshold = (int) Math.min(capacity * loadFactor, MAXIMUM_CAPACITY + 1);
+threshold=16*0.75=12
+
+
+
+
+
+ static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+ static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+  void addEntry(int hash, K key, V value, int bucketIndex) {
+        if ((size >= threshold) && (null != table[bucketIndex])) {
+            resize(2 * table.length);
+            hash = (null != key) ? hash(key) : 0;
+            bucketIndex = indexFor(hash, table.length);
+        }
+
+        createEntry(hash, key, value, bucketIndex);
+    }
+
+
+
+
+    void transfer(Entry[] newTable, boolean rehash) {
+        int newCapacity = newTable.length;
+        for (Entry<K,V> e : table) {
+            while(null != e) {
+                Entry<K,V> next = e.next;
+                if (rehash) {
+                    e.hash = null == e.key ? 0 : hash(e.key);
+                }
+                int i = indexFor(e.hash, newCapacity);
+                e.next = newTable[i];
+                newTable[i] = e;
+                e = next;
+            }
+        }
+    }

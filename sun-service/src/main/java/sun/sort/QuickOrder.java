@@ -26,7 +26,9 @@ public class QuickOrder {
      */
     public static void main(String[] args) {
 
-        int[] a={4,5,1,0,2,3};
+        //int[] a={4,5,1,0,2,3};
+        int[]  a= {4, 2, 5, 1, 6, 3, 7};
+
         System.out.println(Arrays.toString(a));
         getStr(a,0,a.length-1);
         System.out.println(Arrays.toString(a));
