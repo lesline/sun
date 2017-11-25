@@ -59,9 +59,13 @@ threshold=16*0.75=12
                     e.hash = null == e.key ? 0 : hash(e.key);
                 }
                 int i = indexFor(e.hash, newCapacity);
-                e.next = newTable[i];
+                e.next = newTable[i];//将新加的entry放到头部
                 newTable[i] = e;
                 e = next;
             }
         }
     }
+
+并发执行时、从entry头开始拷贝时
+原：entry head 3 4 5 tail
+新：entry head 4 3 tail
