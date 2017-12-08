@@ -16,13 +16,13 @@ public class Pack01 {
     */
         for (int i = 0; i < 5; i++) {
             System.out.println();
-            System.out.print("『"+i+"』"+c[i] + " " + v[i] + "--->");
+            System.out.print("『" + i + "』" + c[i] + " " + v[i] + "--->");
 
             for (int j = 1; j <= 10; j++) {
 
-                if(i==0){
-                    f[0][j]=j>v[0]?v[0]:0;
-                    System.out.print(f[i][j] +" ");
+                if (i == 0) {
+                    f[0][j] = j > v[0] ? v[0] : 0;
+                    System.out.print(f[i][j] + " ");
                     continue;
                 }
                 if (c[i] > j)//如果背包的容量，放不下c[i]，则不选c[i]
@@ -30,7 +30,7 @@ public class Pack01 {
                 else {
                     f[i][j] = getMaxx(f[i - 1][j], f[i - 1][j - c[i]] + v[i]);//转移方程式
                 }
-                System.out.print(f[i][j] +" ");
+                System.out.print(f[i][j] + " ");
             }
         }
 
@@ -38,14 +38,13 @@ public class Pack01 {
             System.out.println();
             for (int j = 0; j < f[i].length; j++) {
                 System.out.print(f[i][j]);
-
             }
 
         }
     }
 
     private static int getMaxx(int a, int b) {
-        return a>b?a:b;
+        return a > b ? a : b;
     }
 
 }
