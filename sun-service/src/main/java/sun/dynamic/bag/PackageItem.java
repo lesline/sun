@@ -1,4 +1,4 @@
-package sun.bag;
+package sun.dynamic.bag;
 
 public class PackageItem {
 		public String name;

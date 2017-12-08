@@ -1,4 +1,4 @@
-package sun.bag;
+package sun.dynamic.bag;
 
 /**
  * Created by zhangshaolin on 2017/12/5.

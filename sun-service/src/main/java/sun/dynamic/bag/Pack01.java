@@ -1,12 +1,8 @@
-package sun.bag;
-
-import java.util.Arrays;
+package sun.dynamic.bag;
 
 public class Pack01 {
 
     public static void main(String[] args) {
-
-
         int c[] = {3, 5, 2, 7, 4};
         int v[] = {2, 4, 1, 6, 5};
         int f[][] = new int[6][11];
