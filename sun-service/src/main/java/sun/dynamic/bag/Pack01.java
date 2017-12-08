@@ -5,7 +5,7 @@ public class Pack01 {
     public static void main(String[] args) {
         int c[] = {3, 5, 2, 7, 4};
         int v[] = {2, 4, 1, 6, 5};
-        int f[][] = new int[6][11];
+        int f[][] = new int[5][11];
 
    /*  1 2 3 4 5 6 7 8 9 10
    3 2 0 0 2 2 2 2 2 2 2 2
@@ -18,7 +18,8 @@ public class Pack01 {
             System.out.println();
             System.out.print("『"+i+"』"+c[i] + " " + v[i] + "--->");
 
-            for (int j = 1; j < 11; j++) {
+            for (int j = 1; j <= 10; j++) {
+
                 if(i==0){
                     f[0][j]=j>v[0]?v[0]:0;
                     System.out.print(f[i][j] +" ");
