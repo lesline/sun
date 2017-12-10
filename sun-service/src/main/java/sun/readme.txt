@@ -1,6 +1,3 @@
-
-
-
 1.树的前中后序遍历写代码，
 2.快速排序写代码，
 3.hashmap为什么线程不安全，及put过程，扩容过程，死循环产生的过程
@@ -58,8 +55,8 @@ http://www.cnblogs.com/bourbon/archive/2011/08/23/2151044.html
 
 
 jmx上报加日志收集分析系统，比如zabbix，falcon
-
-
+jstack简单使用，定位死循环、线程阻塞、死锁等问题
+https://jingyan.baidu.com/article/4f34706e3ec075e387b56df2.html
 
 1、dock 引用外部磁盘
 [root@localhost ~]# docker run -it -v /test:/soft centos /bin/bash
