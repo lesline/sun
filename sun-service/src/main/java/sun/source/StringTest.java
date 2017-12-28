@@ -1,14 +1,20 @@
 package sun.source;
 
 /**
- * String str1 = new String("a");//两个对象
+ * String str1 = new String("a");//两个对象(无论是jdk1.6还是1.7） 一个堆中 一个常量区
  * String str1 = "a";//一个对象
- * String c = "a" + "b" + "c";  //操作会加到常量池中
+ * String c = "a" + "b" + "c";  //三个对象，都在常量区中 操作会加到常量池中
+ * String s3 = new String("1") + new String("1");//四个对象，一个常量区的1 一个堆中的11 两个堆中的匿名对象1
  * <p>
  * <p>
+ * <p>
+ * 参考：
+ * <p>
+ * https://www.cnblogs.com/ydpvictor/archive/2012/09/09/2677260.html
+ * https://tech.meituan.com/in_depth_understanding_string_intern.html
  * Created by zhangshaolin on 2017/12/20.
  */
-public class String2Test {
+public class StringTest {
     public static void main(String[] args) {
 
         // test1();
