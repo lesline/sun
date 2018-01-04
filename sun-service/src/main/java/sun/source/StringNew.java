@@ -14,8 +14,8 @@ public class StringNew {
         String s3 = "china";
 
         String ss1 = new String("china");//
-        String ss2 = new String("china");
-        String ss3 = new String("china");
+        String ss2 = new String("china");//
+        String ss3 = new String("china");//
 
         System.out.println(s1 == s2);//true
         System.out.println(ss1 == ss2);//false
