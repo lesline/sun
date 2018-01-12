@@ -9,8 +9,20 @@ HashMap是基于hashing的原理，当我们给put()方法传递键和值时，�
 将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。
 
 
+put过程：
+1、先判断key是不是为空，为空做插入操作
+2、对key做hash操作，跟据hash结果定位数组下标，判断该下标的entry是否存在，
+如果存在，遍历链表查找key值相同的entry，并更新其value值，并返回旧值
+如果不存在执行第3步新增entry操作
+3、新增时，判断数据（已插入entry的数量）长度是否大于等于12=16*0.75，如果是则resize操作
+  if ((size >= threshold) && (null != table[bucketIndex])) {
+            resize(2 * table.length);
+ 创建entry，插入链头
+
+
+
 你了解重新调整HashMap大小存在什么问题吗？
-当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。
+当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。(一个线程将  head 3 4  tail  变成 head 4 3 tail 一个线程从3向4遍历）
 在调整大小的过程中，存储在链表中的元素的次序会反过来，因为移动到新的bucket位置的时候，HashMap并不会将元素放在链表的尾部，而是放在头部，这是为了避免尾部遍历(tail traversing)。
 如果条件竞争发生了，那么就死循环了。
 

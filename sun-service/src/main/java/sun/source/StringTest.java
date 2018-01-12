@@ -12,6 +12,7 @@ package sun.source;
  * <p>
  * https://www.cnblogs.com/ydpvictor/archive/2012/09/09/2677260.html
  * https://tech.meituan.com/in_depth_understanding_string_intern.html
+ * https://www.jianshu.com/p/c14364f72b7e
  * Created by zhangshaolin on 2017/12/20.
  */
 public class StringTest {

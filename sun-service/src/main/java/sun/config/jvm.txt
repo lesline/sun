@@ -1,0 +1,10 @@
+/export/servers/jdk1.6.0_25/bin/java -server -Xms128M -Xmx256M -Xss256K -XX:PermSize=32M -XX:MaxPermSize=32M -XX:+UseAdaptiveSizePolicy
+-XX:+UseParallelGC -XX:+UseParallelOldGC
+-XX:GCTimeRatio=39
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:ErrorFile=/export/home/tomcat/logs/loghub.360buy.com/jcollector/hs_err.log
+-XX:HeapDumpPath=/export/home/tomcat/logs/loghub.360buy.com/jcollector/heap_dump.hprof
+-classpath /export/servers/jcollector/conf:/export/servers/jcollector/lib/*:
+-Dapp.name=jcollector
+-Dapp.pid=41 -Dapp.repo=/export/servers/jcollector/lib
+-Dbasedir=/export/servers/jcollector com.jd.log.collect.client.main.Client V3.0.6 2
