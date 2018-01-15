@@ -20,6 +20,14 @@ public class StringNew {
         System.out.println(s1 == s2);//true
         System.out.println(ss1 == ss2);//false
         System.out.println(ss1.intern() == ss2.intern());//false
+
+
+
+        Integer a1=1;
+        Integer a2=1;
+        Integer a3=new Integer(1);
+        System.out.println(a1==a2);
+        System.out.println(a1==a3);
     }
 
 }

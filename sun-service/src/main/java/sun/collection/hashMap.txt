@@ -22,9 +22,9 @@ put过程：
 
 
 你了解重新调整HashMap大小存在什么问题吗？
-当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。(一个线程将  head 3 4  tail  变成 head 4 3 tail 一个线程从3向4遍历）
+当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。
 在调整大小的过程中，存储在链表中的元素的次序会反过来，因为移动到新的bucket位置的时候，HashMap并不会将元素放在链表的尾部，而是放在头部，这是为了避免尾部遍历(tail traversing)。
-如果条件竞争发生了，那么就死循环了。
+如果条件竞争发生了，那么就死循环了。(同时调整理大于导导致链环）
 
 
 transient Entry<K,V>[] table = (Entry<K,V>[]) EMPTY_TABLE;
@@ -62,16 +62,13 @@ threshold=16*0.75=12
 
 
 
-    void transfer(Entry[] newTable, boolean rehash) {
+    void transfer(Entry[] newTable) {
         int newCapacity = newTable.length;
         for (Entry<K,V> e : table) {
             while(null != e) {
-                Entry<K,V> next = e.next;
-                if (rehash) {
-                    e.hash = null == e.key ? 0 : hash(e.key);
-                }
+                Entry<K,V> next = e.next;//第一个线程执行到停止，第二个线程执行完后，第一个线程接着执行
                 int i = indexFor(e.hash, newCapacity);
-                e.next = newTable[i];//将新加的entry放到头部
+                e.next = newTable[i];//此处理发生循环：原table为3->7 ,e=3 当第二个线程执行完后，newTable[i]=7->3   第一个线程执行此行时，  3  ->（7->3) 此时发成环
                 newTable[i] = e;
                 e = next;
             }
@@ -79,5 +76,17 @@ threshold=16*0.75=12
     }
 
 并发执行时、从entry头开始拷贝时
-原：entry head 3 4 5 tail
-新：entry head 4 3 tail
+原：entry head 3 ->7 tail
+新：entry head 7 ->3 tail
+
+
+原          新数组
+3->7
+7            3
+             7->3
+
+
+
+
+
+
