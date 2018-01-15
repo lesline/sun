@@ -68,7 +68,7 @@ threshold=16*0.75=12
             while(null != e) {
                 Entry<K,V> next = e.next;//第一个线程执行到停止，第二个线程执行完后，第一个线程接着执行
                 int i = indexFor(e.hash, newCapacity);
-                e.next = newTable[i];//此处理发生循环：原table为3->7 ,e=3 当第二个线程执行完后，newTable[i]=7->3   第一个线程执行此行时，  3  ->（7->3) 此时发成环
+                e.next = newTable[i];//此处理发生循环：原table为3->7 ,e=3 当第二个线程执行完后，newTable[i]=7->3   第一个线程执行此行时，  3  ->（7->3) 此时产生环
                 newTable[i] = e;
                 e = next;
             }
