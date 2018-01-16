@@ -1,4 +1,4 @@
-package com.cz.aio.client;
+package io.aio.client;
 
 /**
  * Created by 陈钊 on 2017/1/5.

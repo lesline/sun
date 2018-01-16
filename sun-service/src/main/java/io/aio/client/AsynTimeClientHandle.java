@@ -1,6 +1,4 @@
-package com.cz.aio.client;
-
-import com.cz.aio.server.AsynTimeServerHandle;
+package io.aio.client;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

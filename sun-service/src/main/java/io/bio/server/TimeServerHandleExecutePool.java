@@ -1,4 +1,4 @@
-package com.cz.bio.server;
+package io.bio.server;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;

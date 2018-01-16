@@ -1,4 +1,4 @@
-package com.cz.bio.server;
+package io.bio.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
