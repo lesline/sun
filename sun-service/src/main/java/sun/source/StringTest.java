@@ -1,8 +1,9 @@
 package sun.source;
 
 /**
- * String str1 = new String("a");//两个对象(无论是jdk1.6还是1.7） 一个堆中 一个常量区
- * String str1 = "a";//一个对象
+ * String str1 = new String("a");//两个对象(无论是jdk1.6还是1.7） 一个堆中 一个常量区 返回堆中的
+ * String str1 = "a";//一个对象 放在常量池中,返回的是常量池中的引用
+
  * String c = "a" + "b" + "c";  //三个对象，都在常量区中 操作会加到常量池中
  * String s3 = new String("1") + new String("1");//四个对象，一个常量区的1 一个堆中的11 两个堆中的匿名对象1
  * <p>
@@ -17,18 +18,11 @@ package sun.source;
  */
 public class StringTest {
     public static void main(String[] args) {
-
         // test1();
         // test2();
     }
 
 
-    public static void test() {
-        // String str2 = "SEUCalvin";//新加的一行代码，其余不变
-        String str1 = new String("SEU") + new String("Calvin");
-        System.out.println(str1.intern() == str1);
-        System.out.println(str1 == "SEUCalvin");
-    }
 
     public static void test1() {
         String str1 = "a";

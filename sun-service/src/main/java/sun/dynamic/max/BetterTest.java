@@ -5,6 +5,7 @@ public class BetterTest {
         int[] a = {0, -2, 3, 5, -1, 2};
         System.out.println(maxSubStr(a));
     }
+
     /**
      * 动态规划：取子数组的最大和
      * 动态规划解法：
@@ -40,6 +41,5 @@ public class BetterTest {
                 result = sum;
         }
         return result;
-
     }
 }

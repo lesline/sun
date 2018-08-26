@@ -10,7 +10,7 @@ package sun.source;
  */
 public class StringIntern {
     public static void main(String[] args) {
-        test1();
+        test();
         // test1();
         // test2();
     }
@@ -18,22 +18,22 @@ public class StringIntern {
     public static void test() {
         String s = new String("1");
         String s2 = "1";
-        System.out.println(s == s2);
+        System.out.println(s == s2); //false
 
         String s3 = new String("1") + new String("1");
         String s4 = "11";
-        System.out.println(s3 == s4);
+        System.out.println(s3 == s4);//false
     }
 
     public static void test1() {
         String s = new String("1");
         String s2 = "1";
-        System.out.println(s == s2);
+        System.out.println(s == s2);//false
 
         String s3 = new String("1") + new String("1");
         s3.intern();
         String s4 = "11";
-        System.out.println(s3 == s4);
+        System.out.println(s3 == s4);//true
     }
 
     public static void test2() {

@@ -1,7 +1,6 @@
 package sun.dynamic.bag;
 
 public class Pack01 {
-
     /**
      * f[i][j] 为第i
      * f[i][j] = getMax(f[i - 1][j], f[i - 1][j - c[i]] + v[i]);//转移方程式
@@ -37,13 +36,11 @@ public class Pack01 {
                 System.out.print(f[i][j] + " ");
             }
         }
-
         for (int i = 0; i < f.length; i++) {
             System.out.println();
             for (int j = 0; j < f[i].length; j++) {
                 System.out.print(f[i][j]);
             }
-
         }
     }
 
